@@ -1383,14 +1383,14 @@ export default{
 </script>
 
 <style>
-.addEmployee .tabs{height: 500px;overflow-y: auto;width: 75px;}
+	.addEmployee .tabs{height: 100%;overflow-y: auto;width: 75px;}
 	.addEmployee *{box-sizing: border-box;}
 	.addEmployee .el-input,.addEmployee .el-date-editor{width:175px}
 	.addEmployee .w130 .el-input{width:130px}
 	.addEmployee .el-dialog__header{text-align:center;}
 	.addEmployee{display: inline-block;}
 	.post-rel{position: relative;}
-	.addEmployee .allwrap{height: 520px;}
+	.addEmployee .allwrap{height:calc(100% - 100px)}
 	.addEmployee .tabs{
 		padding: 0;
 		margin-right:20px;
@@ -1402,20 +1402,13 @@ export default{
 	.addEmployee .el-dialog__headerbtn{background-color: transparent;
 	    border: none;
 	}
-	
-	.addEmployee .item-block {
+	.addEmployee  .el-dialog__body{height: 100%;}
+	.addEmployee .btn-container{display: none;}
+	.item-block {
 	    display: -webkit-box;
 	    display: -ms-flexbox;
 	    display: flex;
 	}
-	.addEmployee .item-block>.el-form-item{flex: 1;}
-	.addEmployee .resume-block-title {
-	    font-size: 16px;
-	    font-weight: 500;
-	    padding-bottom: 15px;
-	    margin-bottom: 20px;
-	    border-bottom: 1px solid #ddd;
-	}
+	.item-block>.el-form-item{flex: 1;}
 	.addEmployee .el-dialog.is-fullscreen{overflow: hidden;}
-	.addEmployee .btn-container{display: none;}
 </style>
