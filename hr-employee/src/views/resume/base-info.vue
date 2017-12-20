@@ -1,6 +1,6 @@
 <template>
   <div class="page-resume-baseinfo">
-    <el-form size="small" label-width="80px" label-position="left" :model="baseInfo" ref="baseInfo" :rules="rules">
+    <el-form size="small" label-width="80px" label-position="top" :model="baseInfo" ref="baseInfo" :rules="rules">
       <div class="item-block">
         <el-form-item label="申请岗位" prop="post">
           <el-select 

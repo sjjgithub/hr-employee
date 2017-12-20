@@ -31,15 +31,18 @@ if (process.env.NODE_ENV == 'development') {
 	sso='http://127.0.0.1:8080/hrSSO';
 	ctrlhr='http://127.0.0.1:8080/ctrlHR';
 }else if(process.env.NODE_ENV == 'production'){
-	baseUrl = 'http://127.0.0.1:8080/hrRecruit-api'; 
-	sso='http://127.0.0.1:8080/hrSSO';
-	ctrlhr='http://127.0.0.1:8080/ctrlHR';
+//	baseUrl = 'http://127.0.0.1:8080/hrRecruit-api'; 
+//	sso='http://127.0.0.1:8080/hrSSO';
+//	ctrlhr='http://127.0.0.1:8080/ctrlHR';
 //	baseUrl = 'http://121.40.102.225:8888/hrRecruit-api'; 
 //	sso='http://121.40.102.225:8888/hrSSO';
 //	ctrlhr='http://121.40.102.225:8888/ctrlHR';
 //	baseUrl = 'http://114.80.227.222:8081/hrRecruit-api'; 
 //	sso='http://114.80.227.222:8081/hrSSO';
 //	ctrlhr='http://114.80.227.222:8081/ctrlHR';
+	baseUrl = 'http://114.80.227.222:8080/hrRecruit-api'; 
+	sso='http://114.80.227.222:8080/hrSSO';
+	ctrlhr='http://114.80.227.222:8080/ctrlHR';
 }
 
 export {

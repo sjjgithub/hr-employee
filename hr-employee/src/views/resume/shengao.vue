@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-shengao">
     <p class="resume-block-title">申告事项</p>
-    <el-form size="small" :model="state" ref="state" babel-position="top">
+    <el-form size="small" :model="state" ref="state" label-position="top">
       <el-form-item label="您是否在两年内有发生过交通违章？若有，请详细列出"
         prop="ispeccancy"
         :rules="[
@@ -29,9 +29,9 @@
       </el-form-item>
 
       <el-form-item label="您是否有亲属朋友在雅玛多关联公司工作？若有，请列出姓名，部门名称及职位"
-        prop="friends">
+        prop="remarks">
         <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
-        v-model="state.friends"></el-input>
+        v-model="state.remarks"></el-input>
       </el-form-item>
 
       <el-form-item label="您是否同意公司对您进行工作地点的调动?"
@@ -116,7 +116,7 @@
           ispeccancy: '',
           beillegal: '',
           retire: '',
-          friends: '',
+          remarks: '',
           tranlocation: '同意',
           reason1: '',
           tranpost: '同意',

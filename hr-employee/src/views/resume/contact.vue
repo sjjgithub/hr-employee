@@ -36,7 +36,7 @@
         </el-form-item>
       </div>
 
-      <div class="item-block col-3">
+      <div class="item-block">
         <el-form-item label="紧急联系人" prop="iceperson">
           <el-input placeholder="请输入紧急联系姓名" v-model="contactInfo.iceperson">
           </el-input>
@@ -45,17 +45,19 @@
           <el-input placeholder="请输入关系" v-model="contactInfo.relation">
           </el-input>
         </el-form-item>
-        <el-form-item label="手机号" prop="icepersonphone">
+      </div>
+       <el-form-item label="手机号" prop="icepersonphone">
           <el-input placeholder="请输入紧急联系手机号" v-model="contactInfo.icepersonphone">
           </el-input>
         </el-form-item>
-      </div>
     </el-form>
-    <div class="item-block btn-container">
-      <el-button-group>
-        <el-button type="primary" icon="el-icon-arrow-left" @click="$router.back()">上一步</el-button>
-        <el-button type="primary" @click="next('contactInfo')">下一步<i class="el-icon-arrow-right el-icon--right"></i></el-button>
-      </el-button-group>
+    <div class="item-block">
+    	 <div class="item-block btn-container">
+	      <el-button-group>
+	        <el-button type="primary" icon="el-icon-arrow-left" @click="$router.back()">上一步</el-button>
+	        <el-button type="primary" @click="next('contactInfo')">下一步<i class="el-icon-arrow-right el-icon--right"></i></el-button>
+	      </el-button-group>
+	    </div>
     </div>
   </div>
 </template>

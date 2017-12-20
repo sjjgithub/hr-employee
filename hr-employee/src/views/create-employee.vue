@@ -754,8 +754,8 @@ export default{
 	 	if(this.info){
         	this.resurmeInfo=this.info;
         	Object.assign(this.form.baseInfo,this.resurmeInfo);
-        	this.form.baseInfo.marriage=this.resurmeInfo.marriage?parseInt(this.resurmeInfo.marriage):1,
-        	this.form.baseInfo.escuage=this.resurmeInfo.escuage||'否',
+        	this.form.baseInfo.marriage=this.resurmeInfo.marriage?parseInt(this.resurmeInfo.marriage):1;
+        	this.form.baseInfo.escuage=this.resurmeInfo.escuage||'否';
         	//填补员工信息
         	this.info.sex=parseInt(this.info.sex);
         	var info={
@@ -1078,6 +1078,9 @@ export default{
                 	console.log(response)
                 	if(response.data.data.length){
                   		Object.assign(vm.resurmeInfo,response.data.data[0]);
+                  		Object.assign(this.form.baseInfo,this.resurmeInfo);
+			        	this.form.baseInfo.marriage=this.resurmeInfo.marriage?parseInt(this.resurmeInfo.marriage):1;
+			        	this.form.baseInfo.escuage=this.resurmeInfo.escuage||'否';
                 	}else{
                 		vm.resurmeInfo={};
                 	}
@@ -1213,6 +1216,7 @@ export default{
     		if(vm.add&&!vm.fromResume){
     			saveApi="/candidate/addCandidate"
     			 param.deleted=1;
+    			 param.name=vm.form.info.name;
     		}else{
     			saveApi="/candidate/updateCandidate";
     		}
