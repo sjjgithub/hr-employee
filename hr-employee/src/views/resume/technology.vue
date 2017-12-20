@@ -55,7 +55,7 @@
           otherskill: '',
           interest: ''
         },
-        textareaSize: { minRows: 5, maxRows: 8 }
+        textareaSize: { minRows: 2, maxRows: 5 }
       }
     },
     created () {

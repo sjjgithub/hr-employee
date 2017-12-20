@@ -124,7 +124,7 @@
           tranlocation1year: '同意',
           reason3: ''
         },
-        textareaSize: { minRows: 5, maxRows: 8 },
+        textareaSize: { minRows: 2, maxRows: 5 },
         detail:{},
       }
     },
