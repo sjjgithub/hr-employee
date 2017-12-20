@@ -1,0 +1,59 @@
+*, *:before, *:after{
+  box-sizing: border-box;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+body{
+  color: #313131;
+  background-color: #f5f5f5;
+}
+
+a {
+  color: #313131;
+  text-decoration: none;
+  transition: color 0.2s linear;
+}
+a:hover {
+  color: #ff8331;
+}
+
+body, button, input, textarea, select {
+  font: 14px/1.5 Helvetica, Arial, "PingFang SC", "Helvetica Neue", "Lantinghei SC","Hiragino Sans GB", STHeiti, "Microsoft Yahei","Microsoft Sans Serif", sans-serif, \5b8b\4f53;
+}
+
+select {
+  -webkit-appearance: none;
+}
+
+* {
+  outline: none;
+}
+
+span {
+  font-weight: inherit;
+}
+
+img, canvas {
+  vertical-align: middle;
+}
+
+label {
+  cursor: text;
+}
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+.text-center{text-align: center;}
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+
