@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-education">
     <p class="resume-block-title">教育经历（从最高学历填起）</p>
-    <el-form label-width="80px" label-position="left" :rules="rules" :ref="'education'+index"  :model="item"  v-for="(item,index) in educationList" key="item.key">
+    <el-form size="small" label-width="80px" label-position="left" :rules="rules" :ref="'education'+index"  :model="item"  v-for="(item,index) in educationList" key="item.key">
       <div class="form-item-group">
         <div class="item-block">
           <el-form-item label="起始年月" prop="beginDate">

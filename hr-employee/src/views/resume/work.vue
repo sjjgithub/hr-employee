@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-work">
     <p class="resume-block-title">工作经历（最近的3家）</p>
-    <el-form label-width="85px" label-position="left" :model="item" :ref="'work'+index" :rules="rules"  v-for="(item, index) in workList" :key="index">
+    <el-form size="small" label-width="85px" label-position="left" :model="item" :ref="'work'+index" :rules="rules"  v-for="(item, index) in workList" :key="index">
       <div class="form-item-group">
         <div class="item-block">
           <el-form-item label="起始时间" prop="beginDate">

@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-shengao">
     <p class="resume-block-title">申告事项</p>
-    <el-form :model="state" ref="state" babel-position="top">
+    <el-form size="small" :model="state" ref="state" babel-position="top">
       <el-form-item label="您是否在两年内有发生过交通违章？若有，请详细列出"
         prop="ispeccancy"
         :rules="[

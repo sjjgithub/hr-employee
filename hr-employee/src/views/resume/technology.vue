@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-technology">
     <p class="resume-block-title">技能及个人特长</p>
-    <el-form :model="skill" ref="skill" babel-position="top">
+    <el-form size="small" :model="skill" ref="skill" babel-position="top">
       <el-form-item label="您会使用何种电脑软件?（例如：EXCEL,WORD,PPT等）" 
       prop="iscomputer"
       >

@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-contact">
     <p class="resume-block-title">联系方式</p>
-    <el-form label-width="100px" label-position="left" :model="contactInfo" ref="contactInfo"
+    <el-form size="small" label-width="100px" label-position="left" :model="contactInfo" ref="contactInfo"
      :rules="rules">
       <div class="item-block">
         <el-form-item label="家庭电话" prop="familyphone">

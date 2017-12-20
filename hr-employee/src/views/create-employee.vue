@@ -8,7 +8,7 @@
 					:class="{active:activeInd==index}" @click="activeInd=index">{{tab.label}}</li>
 			</ul>
 			<div class="content">
-				<el-form  :model="form" v-show="open&&activeInd<2" inline :rules="rules" label-position="right" label-width="110px" ref="aadForm">
+				<el-form size="small" :model="form" v-show="open&&activeInd<2" inline :rules="rules" label-position="right" label-width="110px" ref="aadForm">
 					<el-row v-show="activeInd==0">
 						<el-col :span="8">
 							<el-form-item prop="info.name" label="姓名"  
@@ -1411,4 +1411,12 @@ export default{
 	}
 	.item-block>.el-form-item{flex: 1;}
 	.addEmployee .el-dialog.is-fullscreen{overflow: hidden;}
+	.resume-block-title {
+	    font-size: 16px;
+	    font-weight: 500;
+	    padding-bottom: 15px;
+	    margin-bottom: 20px;
+	    border-bottom: 1px solid #ddd;
+	}
+	.item-block.item-add{padding-top: 20px;border-top: 1px solid #ddd;}
 </style>

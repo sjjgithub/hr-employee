@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-family">
     <p class="resume-block-title">家庭成员（已婚者须填写配偶、子女情况；未婚者填写父母或兄弟姐妹）</p>
-    <el-form label-width="80px" label-position="left" class="demo-dynamic" :rules="rules" :ref="'person'+index"  :model="item"  v-for="(item,index) in tbFamilyList" key="item.key">
+    <el-form size="small" label-width="80px" label-position="left" class="demo-dynamic" :rules="rules" :ref="'person'+index"  :model="item"  v-for="(item,index) in tbFamilyList" key="item.key">
       <div class="form-item-group">
         <div class="item-block">
           <el-form-item label="姓名" prop="name"  >

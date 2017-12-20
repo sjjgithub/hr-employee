@@ -1,7 +1,7 @@
 <template>
   <div class="page-resume-position">
     <p class="resume-block-title">职业信息专栏（仅限营销司机应聘人员填写）</p>
-    <el-form label-width="120px" label-position="left"
+    <el-form size="small" label-width="120px" label-position="left"
       :model="positionInfo"
       :rules="rules"
       ref="positionInfo"
