@@ -40,9 +40,9 @@ if (process.env.NODE_ENV == 'development') {
 //	baseUrl = 'http://114.80.227.222:8081/hrRecruit-api'; 
 //	sso='http://114.80.227.222:8081/hrSSO';
 //	ctrlhr='http://114.80.227.222:8081/ctrlHR';
-	baseUrl = 'http://114.80.227.222:8080/hrRecruit-api'; 
-	sso='http://114.80.227.222:8080/hrSSO';
-	ctrlhr='http://114.80.227.222:8080/ctrlHR';
+	baseUrl = 'http://hr.ta-q-bin.com.cn/hrRecruit-api'; 
+	sso='http://hr.ta-q-bin.com.cn/hrSSO';
+	ctrlhr='http://hr.ta-q-bin.com.cn/ctrlHR';
 }
 
 export {
