@@ -1158,7 +1158,7 @@ export default{
 							}else{
 								vm.saveLoading=false;
 								vm.$message.error({
-									message:responseData.msg||"未知原因稍后重试",
+									message:responseData.msg||"创建员工信息发生错误",
 									duration:20000,
 									showClose:true,
 								});
@@ -1166,7 +1166,7 @@ export default{
 					}).catch(function(){
 						vm.saveLoading=false;
 						vm.$message.error({
-									message:"未知错误稍后重试",
+									message:"创建员工信息发生错误",
 									duration:20000,
 									showClose:true,
 								});
@@ -1186,15 +1186,12 @@ export default{
 			vm.$http.get(saveApi,{params:param})
 			.then((response)=>{
 				let responseData=response.data
-				debugger;
 				if(responseData.code=="200"){
-//					vm.$message.success(vm.add?"新建员工成功":"编辑员工成功");
-//					vm.$emit("update",vm.resumeId);
 					vm.saveResume(code,vm.resurmeInfo);
 				}else{
 					vm.saveLoading=false;
 					vm.$message.error({
-						message:responseData.msg||"未知原因稍后重试",
+						message:responseData.msg||"创建社保信息发生错误",
 						duration:20000,
 						showClose:true,
 					});
@@ -1202,7 +1199,7 @@ export default{
 			}).catch(function(){
 				vm.saveLoading=false;
 				vm.$message.error({
-					message:"未知错误稍后重试",
+					message:"创建社保信息发生错误",
 					duration:20000,
 					showClose:true,
 				});
@@ -1233,7 +1230,7 @@ export default{
 					}
 				}else{
 					vm.$message.error({
-						message:responseData.msg||"未知原因稍后重试",
+						message:responseData.msg||"创建简历息发生错误",
 						duration:20000,
 						showClose:true,
 					});
@@ -1241,7 +1238,7 @@ export default{
 			}).catch(function(){
 				vm.saveLoading=false;
 				vm.$message.error({
-					message:"未知错误稍后重试",
+					message:"创建简历息发生错误",
 					duration:20000,
 					showClose:true,
 				});
@@ -1423,4 +1420,5 @@ export default{
 	    border-bottom: 1px solid #ddd;
 	}
 	.item-block.item-add{padding-top: 20px;border-top: 1px solid #ddd;}
+	.addEmployee .el-col{height: 51px;max-height: 51px;}
 </style>
