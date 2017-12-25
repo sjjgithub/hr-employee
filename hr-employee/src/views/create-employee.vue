@@ -98,8 +98,8 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
-							<el-form-item prop="info.probitionPeriod" label="试用期" :rules="rules['info.probitionPeriod']">
-								<el-input size="small" :disabled="!add" v-model="form.info.probitionPeriod" placeholder="请输入试用期单位/月"></el-input>
+							<el-form-item prop="info.probationPeriod" label="试用期" :rules="rules['info.probationPeriod']">
+								<el-input size="small" :disabled="!add" v-model="form.info.probationPeriod" placeholder="请输入试用期单位/月"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
@@ -160,7 +160,7 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
-							<el-form-item prop="baseInfo.nativeStr" label="籍贯"  :rules="[{required: true, message: '请输入籍贯', trigger: 'blur'}]">
+							<el-form-item prop="baseInfo.nativeStr" label="籍贯">
 								<el-input placeholder="请输入籍贯" v-model="form.baseInfo.nativeStr"></el-input>
 							</el-form-item>
 						</el-col>
@@ -534,7 +534,7 @@ export default{
 					workSystemId:"",//工作制类型
 					jobState:1,//在职状态
 					entryDate:"",//入职时间
-					probitionPeriod:"",//试用期
+					probationPeriod:"",//试用期
 					formalDate:"",//转正时间
 					quitDate:"",//离职时间
 					laborDispatch:"Y",//是否外派
@@ -638,7 +638,7 @@ export default{
 				'info.email':[
 					{type:'email',message:"请输入正确的邮箱格式",trigger:"blur"}
 				],
-				'info.probitionPeriod':[
+				'info.probationPeriod':[
 					{required:true,message:"试用期不能为空",trigger:'blur'},
 					{pattern: /^\d+$|^\d+(\.\d{1}$)/, message: '试用期填写格式不正确', trigger: 'blur'},
 				],
@@ -751,81 +751,48 @@ export default{
                 vm.sels.paymentUnitList = data.data;
             } 
         })
-	 	if(this.info){
-        	this.resurmeInfo=this.info;
-        	Object.assign(this.form.baseInfo,this.resurmeInfo);
-        	this.form.baseInfo.marriage=this.resurmeInfo.marriage?parseInt(this.resurmeInfo.marriage):1;
-        	this.form.baseInfo.escuage=this.resurmeInfo.escuage||'否';
-        	//填补员工信息
-        	this.info.sex=parseInt(this.info.sex);
-        	var info={
-        		name:this.info.name,
-				mobile:this.info.phone,
-				idNum:this.info.num,
-				sex:this.info.sex,
-				dateOfBirth:this.info.date_of_birth,
-				email:this.info.email,
-				jobOrgId:this.info.post,
-        	};
-        	this.resumeId=this.info.id;
-        	info.dateOfBirth=moment(info.dateOfBirth).format("YYYY-MM-DD");
-        	Object.assign(this.form.info,info);
-        	this.$http.get('/api/recruitPlan/otherInfo',{params:{id:info.jobOrgId}})
-        	.then((response)=>{ 
-        		this.form.info.deptId=response.data.data.deptId;
-        		this.$nextTick(function(){
-        			this.form.info.jobId=response.data.data.jobId;
-        			this.$nextTick(()=>{
-        				this.form.info.jobOrgId=response.data.data.jobOrgId;
-        				this.$nextTick(()=>{
-	        				this.form.info.workSystemId=response.data.data.workSystemId;
-	        			})
-        			})
-        		})
-        	})
-        }	
     //根据简历id获取简历信息
-//      if(this.info){
-//      	var vm=this;
-//    		this.$http.get("/candidate/query",{params:{id:this.info}})
-//  		.then((response)=>{
-//              if (response.data.returnCode=="S000") {
-//              	response.data.data = JSON.parse(response.data.data);
-//              	console.log(response)
-//              	if(response.data.data.length){
-//                		Object.assign(vm.resurmeInfo,response.data.data[0]);
-//            			//填补员工信息
-//			        	var info={
-//			        		name:vm.resurmeInfo.name,
-//							mobile:vm.resurmeInfo.phone,
-//							idNum:vm.resurmeInfo.num,
-//							sex:vm.resurmeInfo.sex,
-//							dateOfBirth:vm.resurmeInfo.date_of_birth,
-//							email:vm.resurmeInfo.email,
-//							jobOrgId:vm.resurmeInfo.post,
-//			        	};
-//			        	this.resumeId=vm.resurmeInfo.id;
-//			        	info.dateOfBirth=moment(info.dateOfBirth).format("YYYY-MM-DD");
-//			        	Object.assign(this.form.info,info);
-//			        	this.$http.get('/api/recruitPlan/otherInfo',{params:{id:info.jobOrgId}})
-//			        	.then((response)=>{ 
-//			        		this.form.info.deptId=response.data.data.deptId;
-//			        		this.$nextTick(function(){
-//			        			this.form.info.jobId=response.data.data.jobId;
-//			        			this.$nextTick(()=>{
-//			        				this.form.info.jobOrgId=response.data.data.jobOrgId;
-//			        				this.$nextTick(()=>{
-//				        				this.form.info.workSystemId=response.data.data.workSystemId;
-//				        			})
-//			        			})
-//			        		})
-//			        	})
-//              	}else{
-//              		vm.resurmeInfo={};
-//              	}
-//              } 
-//  		})
-//      }
+        if(this.info){
+        	var vm=this;
+      		this.$http.get("/candidate/query",{params:{id:this.info}})
+    		.then((response)=>{
+                if (response.data.returnCode=="S000") {
+                	response.data.data = JSON.parse(response.data.data);
+                	console.log(response)
+                	if(response.data.data.length){
+                  		Object.assign(vm.resurmeInfo,response.data.data[0]);
+              			//填补员工信息
+			        	var info={
+			        		name:vm.resurmeInfo.name,
+							mobile:vm.resurmeInfo.phone,
+							idNum:vm.resurmeInfo.num,
+							sex:vm.resurmeInfo.sex,
+							dateOfBirth:vm.resurmeInfo.date_of_birth,
+							email:vm.resurmeInfo.email,
+							jobOrgId:vm.resurmeInfo.post,
+			        	};
+			        	this.resumeId=vm.resurmeInfo.id;
+			        	info.dateOfBirth=moment(info.dateOfBirth).format("YYYY-MM-DD");
+			        	Object.assign(this.form.info,info);
+			        	this.$http.get('/api/recruitPlan/otherInfo',{params:{id:info.jobOrgId}})
+			        	.then((response)=>{ 
+			        		this.form.info.deptId=response.data.data.deptId;
+			        		this.$nextTick(function(){
+			        			this.form.info.jobId=response.data.data.jobId;
+			        			this.$nextTick(()=>{
+			        				this.form.info.jobOrgId=response.data.data.jobOrgId;
+			        				this.$nextTick(()=>{
+				        				this.form.info.workSystemId=response.data.data.workSystemId;
+				        			})
+			        			})
+			        		})
+			        	})
+                	}else{
+                		vm.resurmeInfo={};
+                	}
+                } 
+    		})
+        }
     },
     watch:{
     	'form.baseInfo':{
@@ -835,7 +802,7 @@ export default{
 	    	deep:true,
     	},
     	activeInd:function(val){
-    		if(val){
+    		if(val==1){
     			this.rules['info.salaryId']=[{required:true,message:"工资档位不能为空"}];
     			this.rules['info.discount']=[{required:true,message:"试用期折扣不能为空",trigger:"change"},{validator:this.checkDiscount,trigger:"blur"}];
     		}else{
@@ -844,17 +811,22 @@ export default{
     		}
     	},
     	'form.info.tradeUnions'(val){
-    		if(this.add)this.form.info.tradeUnionsFee=val=='Y'?5:0
+    		if(val=='Y'){
+    			this.form.info.tradeUnionsFee='5'
+    		}else if(val!='Y'){
+    			this.form.info.tradeUnionsFee='0'
+    		}
     	},
     	'form.info.jobType'(val){
-    		if(this.add){
-    			if(val=='1'){
-	    			this.form.info.trafficAllowance=10;
-	    			this.form.info.foodAllowance=20;
-	    		}else if(val=='2'){
-	    			this.form.info.trafficAllowance=5;
-	    			this.form.info.foodAllowance=15;
-	    		}
+			if(val=='1'){
+    			this.form.info.trafficAllowance='10';
+    			this.form.info.foodAllowance='20';
+    		}else if(val=='2'){
+    			this.form.info.trafficAllowance='5';
+    			this.form.info.foodAllowance='15';
+    		}else if(!val){
+    			this.form.info.trafficAllowance='';
+    			this.form.info.foodAllowance='';
     		}
     	},
 	    'form.info.deptId':function(val){
@@ -919,7 +891,7 @@ export default{
 				}
 			}
 		},
-		'form.info.probitionPeriod':function(val){
+		'form.info.probationPeriod':function(val){
 			if(this.form.info.entryDate&&this.add){
 				this.form.info.formalDate=this.setMonth(this.form.info.entryDate,val);
 				this.$nextTick(function(){
@@ -928,14 +900,14 @@ export default{
 			}
 		},
 		'form.info.entryDate':function(val){
-			if(this.form.info.probitionPeriod&&this.add){
-			   this.form.info.formalDate=this.setMonth(val,this.form.info.probitionPeriod);
+			if(this.form.info.probationPeriod&&this.add){
+			   this.form.info.formalDate=this.setMonth(val,this.form.info.probationPeriod);
 			   	this.$nextTick(function(){
 					if(this.$refs.aadForm)this.$refs.aadForm.validateField("info.formalDate");
 				})
 			}
 			if(!this.add){
-				this.getProbitionPeriod(val,this.form.info.formalDate)
+				this.getprobationPeriod(val,this.form.info.formalDate)
 			}
 			if(val){
 				this.formalDatePickerOptions.disabledDate=function(time){
@@ -947,7 +919,7 @@ export default{
 		},
 		'form.info.formalDate':function(val){
 			if(!this.add){
-				this.getProbitionPeriod(this.form.info.entryDate,val)
+				this.getprobationPeriod(this.form.info.entryDate,val)
 			}
 		},
 		'form.info.jobState':function(val){
@@ -1018,7 +990,9 @@ export default{
 					vm.form.info=data;
 					vm.$nextTick(function(){
 						vm.idCardBlur();
-						vm.getProbitionPeriod(vm.form.info.entryDate,vm.form.info.formalDate);
+						if(!vm.info.probationPeriod){
+							vm.getprobationPeriod(vm.form.info.entryDate,vm.form.info.formalDate);
+						}
 						if(!vm.form.info.deptId)vm.form.info.deptId=copyData.deptId;
 						vm.$nextTick(function(){
 							if(!vm.form.info.jobId)vm.form.info.jobId=copyData.jobId;
@@ -1029,6 +1003,8 @@ export default{
 								})
 							})	
 						})
+						vm.form.info.trafficAllowance=copyData.trafficAllowance;
+    					vm.form.info.foodAllowance=copyData.foodAllowance;
 					})
 					vm.getSalaryByCode();
 				}
@@ -1326,21 +1302,21 @@ export default{
 			})
     	},
     	//根据入职日期和转正日期反推试用期
-       	getProbitionPeriod:function(start,end){
-       		var startDate=moment(start||"");
-       		var endDate=moment(end||"");
+       	getprobationPeriod:function(start,end){
+       		var startDate=moment(start);
+       		var endDate=moment(end);
        		if(startDate.date()==endDate.date()){
        			if(startDate.year()==endDate.year()){
-       				this.form.info.probitionPeriod=endDate.month()-startDate.month();
+       				this.form.info.probationPeriod=endDate.month()-startDate.month();
        			}else{
-       				this.form.info.probitionPeriod=endDate.month()-startDate.month()+12*(endDate.year()-startDate.year())
+       				this.form.info.probationPeriod=endDate.month()-startDate.month()+12*(endDate.year()-startDate.year())
        			}
        		}else{
        			var i=1;
-				while(startDate.add(i,"day").isBefore(endDate)){
+				while(moment(start).add(i,"day").isBefore(endDate)){
 					i++;
 				}
-				this.form.info.probitionPeriod=Math.round((i/30)*10)/10;
+				this.form.info.probationPeriod=Math.round((i/30)*10)/10;
        		}
        	},
     	//身份证输入完毕根据身份证获取生日性别
