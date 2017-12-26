@@ -991,7 +991,7 @@ export default{
 					vm.form.info=data;
 					vm.$nextTick(function(){
 						vm.idCardBlur();
-						if(!vm.info.probationPeriod){
+						if(!vm.form.info.probationPeriod){
 							vm.getprobationPeriod(vm.form.info.entryDate,vm.form.info.formalDate);
 						}
 						if(!vm.form.info.deptId)vm.form.info.deptId=copyData.deptId;
@@ -1316,9 +1316,16 @@ export default{
        				this.form.info.probationPeriod=endDate.month()-startDate.month()+12*(endDate.year()-startDate.year())
        			}
        		}else{
-       			var i=1;
-				while(moment(start).add(i,"day").isBefore(endDate)){
-					i++;
+				if(startDate.isBefore(endDate)){
+					var i=1;
+					while(moment(start).add(i,"day").isSameOrBefore(endDate)){
+						i++;
+					}
+				}else{
+					var i=-1;
+					while(moment(start).add(i,"day").isSameOrAfter(endDate)){
+						i--;
+					}
 				}
 				this.form.info.probationPeriod=Math.round((i/30)*10)/10;
        		}
