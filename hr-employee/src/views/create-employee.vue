@@ -703,6 +703,7 @@ export default{
 	          {label: '是'},
 	          {label: '否'}
 	        ],
+	        canUpdate:true,
 		}
 	},
 	computed:{
@@ -1048,7 +1049,6 @@ export default{
     		var vm=this;
     		this.$http.get("/candidate/query",{params:{employeecode:vm.emoloyeeCode}})
     		.then((response)=>{
-    			debugger;
                 if (response.data.returnCode=="S000") {
                 	response.data.data = JSON.parse(response.data.data);
                 	console.log(response)
@@ -1057,8 +1057,10 @@ export default{
                   		Object.assign(this.form.baseInfo,this.resurmeInfo);
 			        	this.form.baseInfo.marriage=this.resurmeInfo.marriage?parseInt(this.resurmeInfo.marriage):1;
 			        	this.form.baseInfo.escuage=this.resurmeInfo.escuage||'否';
+			        	vm.canUpdate=true;
                 	}else{
                 		vm.resurmeInfo={};
+                		vm.canUpdate=false;
                 	}
                     vm.open=true;
                 } 
@@ -1188,10 +1190,12 @@ export default{
     		var saveApi="";
     		if(vm.add&&!vm.fromResume){
     			saveApi="/candidate/addCandidate"
-    			 param.deleted=1;
-    			 param.name=vm.form.info.name;
-    		}else{
-    			saveApi="/candidate/updateCandidate";
+    		}else {
+    			if(vm.canUpdate){
+    				saveApi="/candidate/updateCandidate";
+    			}else{
+    				saveApi="/candidate/addCandidate";
+    			}
     		}
     		param.employeecode=code;
 			vm.$http.post(saveApi,JSON.stringify(param))
