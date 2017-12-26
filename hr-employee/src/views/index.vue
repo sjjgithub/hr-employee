@@ -39,7 +39,7 @@
     top: 100px
     width: 50px
     height: 10px
-    padding: 0 25px
+    padding: 0 25px 0 15px
     .el-button
       margin-bottom: 25px
       width:47px

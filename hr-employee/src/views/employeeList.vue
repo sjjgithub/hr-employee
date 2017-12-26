@@ -1,7 +1,7 @@
 <template>
 	<ctrl-layout :is-first="firstOpen">
 		<div slot="layout-header" class="content-header">
-			<page-top page-title="简历管理" page-description="可点击姓名链接查看具体简历内容">
+			<page-top page-title="员工管理" page-description="这里可以对员工进行操作">
 				<create-employee :add="true"></create-employee>
 			</page-top>
 		</div>
