@@ -2,14 +2,14 @@
   <div class="header-user">
     <div class="header-user-content">
       <div class="left">
-        <p class="dis-flex"><img src="../assets/images/u1520.png" class="logo" height="40px" style="margin-right: 5px;"></p>
-        <p class="company">YCTHR{{test?'(测试)':''}}</p>
-        <p><i class="el-icon-menu"></i></p>
+        <p class="dis-flex"><img src="../assets/images/logo.png" class="logo" height="40px" style="margin-right: 5px;"></p>
+        <p class="company">天孜创智</p>
+        <!--<p><i class="el-icon-menu"></i></p>-->
       </div>
       <div class="nav">
       	  <template v-for="(menu,index) in menus">
       	  	<p>
-      	  		<a v-if="menu.status==1" :href="menu.url">
+      	  		<a v-if="menu.status==1" :href="menu.url" :class="{'disabled':menu.code=='ATT_MODULE'}">
 	        			<el-button :class="{on:menu.code=='EMPLOYEE_MODULE'}">{{menu.name}}</el-button>
 	        		</a>
       	  	</p>
@@ -95,6 +95,7 @@
 	.company{padding-right:10px;}
 	.dis-flex{display: flex;}
 	.left{padding-right: 10px;}
+	a.disabled{pointer-events: none;}
 </style>
 <style lang="stylus">
   .header-user
