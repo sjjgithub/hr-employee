@@ -15,27 +15,27 @@
       	  	</p>
 	        </template>
       </div>
-      <div class="right">
-        <div class="manage-center">
+      <div class="right" >
+        <div class="manage-center" v-if='false'>
           <el-dropdown trigger="click">
-            <span class="el-dropdown-link">
+            <span class="el-dropdown-link" >
               <i class="el-icon-setting"></i>  管理中心<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
             </el-dropdown-menu>
           </el-dropdown>
         </div>
-        <div class="user-info">
-          <el-dropdown @command="outlogin">
+          <el-dropdown @command="outlogin" class="headerDrop" placement="bottom-start" trigger="click">
+          <div class="user-info">
             <span class="el-dropdown-link">
               <img class="user-avatar" src="../assets/images/people.png">
               <span>{{user.realName}}</span><i class="el-icon-arrow-down el-icon--right"></i>
             </span>
-            <el-dropdown-menu slot="dropdown">
+          </div>
+            <el-dropdown-menu slot="dropdown" >
               <el-dropdown-item command="退出">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-        </div>
       </div>
     </div>
   </div>
@@ -97,6 +97,10 @@
 	.left{padding-right: 10px;}
 	a.disabled{pointer-events: none;}
 </style>
+<style type="text/css" scoped="scoped">
+	.el-dropdown-menu.el-popper{text-align: center;border-radius: 0;margin: 0;width: 150px;padding: 0;border: 1px solid #ccc;background-color: transparent;}
+	
+</style>
 <style lang="stylus">
   .header-user
     left: 0
@@ -139,9 +143,9 @@
         font-size: 20px
         color: #fff
       .user-info
-        margin-left: 30px
         padding-left:30px
         border-left:1px solid #ccc
+        box-sizing:border-box
         .user-avatar
           border-radius: 50%
           width: 40px
