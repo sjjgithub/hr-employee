@@ -2,7 +2,7 @@
 	<ctrl-layout :is-first="firstOpen">
 		<div slot="layout-header" class="content-header">
 			<page-top page-title="员工管理" page-description="这里可以对员工进行操作">
-				<create-employee :add="true"></create-employee>
+				<create-employee :add="true" @update="getStaffList"></create-employee>
 			</page-top>
 		</div>
 		<div slot="query">
@@ -134,7 +134,7 @@
 			<el-table-column label="离职时间" align="center" prop="quitDate" show-overflow-tooltip></el-table-column>
 			<el-table-column colspan="2" align="center" label="操作" width="150px" show-overflow-tooltip>
 				<template slot-scope="scope">
-					<create-employee :add="false" type="text" text="编辑" @update="getStaffList(1)" :code="scope.row.code" :id="scope.row.id"></create-employee>
+					<create-employee :add="false" type="text" text="编辑" @update="getStaffList" :code="scope.row.code" :id="scope.row.id"></create-employee>
 				</template>
 			</el-table-column>
 		</el-table>

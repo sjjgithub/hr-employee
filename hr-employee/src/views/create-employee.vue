@@ -4,7 +4,7 @@
 	<el-dialog :modal='false' :fullscreen="true" :visible.sync="open" :title="(add?'新建':'编辑')+'员工'"  :close-on-click-modal="false" @close="resert('aadForm')">
 		<div class="post-rel clearfix allwrap" style="overflow: hidden;" v-loading.body="saveLoading" :element-loading-text="loadingText">
 			<ul class="tabs">
-				<li v-for="(tab,index) in tabList" :key="index" v-show="tab.show"
+				<li v-for="(tab,index) in tabList" :key="index" v-show="tab.show&&index!=1"
 					:class="{active:activeInd==index}" @click="activeInd=index">{{tab.label}}</li>
 			</ul>
 			<div class="content">
@@ -143,14 +143,14 @@
 								</div>
 							</el-form-item>
 						</el-col>
-						<el-col :span="8">
+						<!--<el-col :span="8">
 							<el-form-item prop="info.requireSettlement" label="是否需要结算"  >
 								<el-radio-group v-model="form.info.requireSettlement">
 								    <el-radio label="Y">是</el-radio>
 								    <el-radio label="N">否</el-radio>
 							    </el-radio-group>
 							</el-form-item>
-						</el-col>
+						</el-col>-->
 						<el-col :span="8">
 							<el-form-item prop="info.requireAttendance" label="是否需要考勤"  >
 								<el-radio-group v-model="form.info.requireAttendance">
@@ -469,7 +469,7 @@ export default{
 				},
 				{
 					label:'薪酬信息',
-					show:true,
+					show:false,
 				},
 				{
 					label:'合同信息',
@@ -477,7 +477,7 @@ export default{
 				},
 				{
 					label:'职业信息',
-					show:true,
+					show:false,
 				},
 				{
 					label:'联系方式',
@@ -1207,6 +1207,8 @@ export default{
 					vm.$message.success(vm.add?"新建员工成功":"编辑员工成功");
 					if(vm.add&&vm.fromResume){
 						vm.$emit("update",vm.resumeId);
+					}else{
+						vm.$emit("update");
 					}
 				}else{
 					vm.$message.error({

@@ -17,7 +17,7 @@
       </div>
       <div class="right">
         <div class="manage-center">
-          <el-dropdown>
+          <el-dropdown trigger="click">
             <span class="el-dropdown-link">
               <i class="el-icon-setting"></i>  管理中心<i class="el-icon-arrow-down el-icon--right"></i>
             </span>

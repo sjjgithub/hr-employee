@@ -2,7 +2,7 @@
   <div class="page-resume-shengao">
     <p class="resume-block-title">申告事项</p>
     <el-form size="small" :model="state" ref="state" label-position="top">
-      <el-form-item label="您是否在两年内有发生过交通违章？若有，请详细列出"
+      <!--<el-form-item label="您是否在两年内有发生过交通违章？若有，请详细列出"
         prop="ispeccancy"
         :rules="[
           {required: true, message: '请输入内容'}
@@ -10,7 +10,7 @@
       >
         <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
         v-model="state.ispeccancy"></el-input>
-      </el-form-item>
+      </el-form-item>-->
 
       <el-form-item label="您是否因违法行为而被拘捕、民事或刑事诉讼过？若有，请详细列出"
         prop="beillegal"
