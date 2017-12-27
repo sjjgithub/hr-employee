@@ -1207,6 +1207,8 @@ export default{
 					vm.$message.success(vm.add?"新建员工成功":"编辑员工成功");
 					if(vm.add&&vm.fromResume){
 						vm.$emit("update",vm.resumeId);
+					}else{
+						vm.$emit("update");
 					}
 				}else{
 					vm.$message.error({
