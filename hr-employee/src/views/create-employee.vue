@@ -17,6 +17,18 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
+							<el-form-item prop="info.firstName" label="英文姓氏"  
+								:rules="{pattern:/^[a-zA-Z]+$/,message:'只能输入英文'}">
+								<el-input size="small" v-model="form.info.firstName" placeholder="输入英文姓氏"></el-input>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item prop="info.lastName" label="英文名称"  
+								:rules="{pattern:/^[a-zA-Z]+$/,message:'只能输入英文'}">
+								<el-input size="small" v-model="form.info.lastName" placeholder="输入英文名称"></el-input>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
 							<el-form-item prop="info.code" label="职员代码"  :rules="rules['info.code']">
 								<el-input size="small" v-model="form.info.code" placeholder="输入职员代码" :readonly="!add"></el-input>
 							</el-form-item>
@@ -24,6 +36,11 @@
 						<el-col :span="8">
 							<el-form-item prop="info.mobile" label="手机号" :rules="rules['info.mobile']" >
 								<el-input size="small" v-model="form.info.mobile" placeholder="输入手机号"></el-input>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item prop="info.fromCompany" label="所属公司" >
+								<el-input size="small" v-model="form.info.fromCompany" placeholder="输入所属公司"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
@@ -61,6 +78,28 @@
 						<el-col :span="8">
 							<el-form-item prop="info.idNum" label="身份证号"  :rules="rules['info.idNum']">
 								<el-input @blur="idCardBlur" size="small" v-model="form.info.idNum" placeholder="输入身份证号"></el-input>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item prop="info.idDateFrom" label="身份证有效开始"  >
+								<el-date-picker
+								    v-model="form.info.idDateFrom"
+								    type="date"
+								    size="small"
+								    clearable
+								    placeholder="请选择">
+								</el-date-picker>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item prop="info.idDateTo" label="身份证有效结束"  >
+								<el-date-picker
+								    v-model="form.info.idDateTo"
+								    type="date"
+								    size="small"
+								    clearable
+								    placeholder="请选择">
+								</el-date-picker>
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
@@ -137,26 +176,41 @@
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
+							<el-form-item prop="info.workStartDate" label="社会工作开始"  >
+								<el-date-picker
+								    v-model="form.info.workStartDate"
+								    type="date"
+								    size="small"
+								    clearable
+								    placeholder="请选择">
+								</el-date-picker>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
 							<el-form-item prop="info.workMonths" label="社会工龄"  >
 								<div class="el-input el-input--small">
 									<el-input size="small" v-model="form.info.workMonths" placeholder="请输入" style="width: 150px;margin-right: 5px;"></el-input>月
 								</div>
 							</el-form-item>
 						</el-col>
-						<!--<el-col :span="8">
-							<el-form-item prop="info.requireSettlement" label="是否需要结算"  >
-								<el-radio-group v-model="form.info.requireSettlement">
-								    <el-radio label="Y">是</el-radio>
-								    <el-radio label="N">否</el-radio>
-							    </el-radio-group>
+						<el-col :span="8" v-if="!add">
+							<el-form-item  label="公司工龄"  >
+								<div class="el-input el-input--small">
+									<el-input size="small" disabled v-model="workAge" style="width: 150px;margin-right: 5px;"></el-input>月
+								</div>
 							</el-form-item>
-						</el-col>-->
+						</el-col>
 						<el-col :span="8">
 							<el-form-item prop="info.requireAttendance" label="是否需要考勤"  >
 								<el-radio-group v-model="form.info.requireAttendance">
 								    <el-radio label="Y">是</el-radio>
 								    <el-radio label="N">否</el-radio>
 							    </el-radio-group>
+							</el-form-item>
+						</el-col>
+						<el-col :span="8">
+							<el-form-item prop="baseInfo.nation" label="民族">
+								<el-input placeholder="请输入民族" v-model="form.baseInfo.nation"></el-input>
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
@@ -387,10 +441,14 @@
 </template>
 
 <script>
-import {ctrlhr,sso,errorMessage} from '@/config/env'
 import moment  from 'moment'
+
+import {ctrlhr,sso,errorMessage} from '@/config/env'
+import {JOB_TYPE}  from '@/config/globalStaict'
+
 import hrDept  from '@/components/hr-dept'
 import hrPosition  from '@/components/hr-position'
+
 import contract  from '~/contract/contract'
 
 import educationInfo  from '~/resume/education'
@@ -400,6 +458,7 @@ import workInfo  from '~/resume/work'
 import carInfo  from '~/resume/position'
 import skillInfo  from '~/resume/technology'
 import complaintInfo  from '~/resume/shengao'
+
 export default{
 	components: {
 			hrDept,hrPosition,contract,carInfo,contactInfo,familyInfo,educationInfo,workInfo,skillInfo,complaintInfo
@@ -514,7 +573,8 @@ export default{
 			saveLoading:false,//保存按钮的liading
 			loadingText:"",//保存时加载时的字段
 			activeInd:0,//目前显示的信息,
-			resurmeInfo:{},
+			resurmeInfo:{},//简历信息
+			workAge:'',//公司工作工龄
 			form:{
 				info:{
 					name:"",//姓名
@@ -541,7 +601,6 @@ export default{
 					workMonths:"",//工龄
 					maritalStatus:"",//婚姻状态
 					fertilityStatus:"",//生育状态
-					requireSettlement:"Y",//是否结算
 					requireAttendance:"Y",//是否考勤
 					salaryId:"",//工资档
 					perfId:"",//绩效档
@@ -554,6 +613,13 @@ export default{
 					jobType:"",//用工属性
 					salary:"",//薪资档具体金额
 					perf:"",//绩效具体金额
+					firstName:'',//英文姓氏
+					lastName:'', //英文姓名
+					workStartDate:'',//社会工作开始时间
+					fromCompany:'',//所属公司
+					nation:'',//民族
+					idDateFrom:'',//身份证有效期开始时间
+					idDateTo:'',//身份证有效期结束时间 
 				},
 				salary:{
 					amount:"",//社保基数
@@ -590,6 +656,7 @@ export default{
 				householdList:[],//户粮性质集合
 				paymentUnitList:[],//缴纳单位集合
 				cityList:[],//社保城市集合
+				jobType:JOB_TYPE,//用工属性集合
 			},
 			rules:{
 				'info.name':[
@@ -986,7 +1053,16 @@ export default{
     				data.formalDate=data.formalDate?moment(data.formalDate).format("YYYY-MM-DD"):"";
     				data.dateOfBirth=data.dateOfBirth?moment(data.dateOfBirth).format("YYYY-MM-DD"):"";
 					data.quitDate=data.quitDate?moment(data.quitDate).format("YYYY-MM-DD"):"";
-					data.discount=data.discount?parseFloat(data.discount).toFixed(1):1.0
+					data.discount=data.discount?parseFloat(data.discount).toFixed(1):1.0;
+					//新增日期  
+					data.workStartDate=data.workStartDate?moment(data.workStartDate).format("YYYY-MM-DD"):"";
+    				data.idDateFrom=data.idDateFrom?moment(data.idDateFrom).format("YYYY-MM-DD"):"";
+    				data.idDateTo=data.idDateTo?moment(data.idDateTo).format("YYYY-MM-DD"):"";
+					
+					if(data.entryDate){
+						this.workAge=(moment().year()-moment(data.entryDate).year())*12+(moment().month()-moment(data.entryDate).month());
+					}
+					
 					vm.form.info={};
 					vm.form.info=data;
 					vm.$nextTick(function(){
@@ -1117,14 +1193,16 @@ export default{
     		vm.$refs[formName].validate(function(valid){
     			if(valid){
     				var param=JSON.parse(JSON.stringify(vm.form.info));
-    				param.entryDate=moment(vm.form.info.entryDate).format("YYYY-MM-DD HH:mm:ss");
-    				param.formalDate=moment(vm.form.info.formalDate).format("YYYY-MM-DD HH:mm:ss");
-    				param.dateOfBirth=moment(vm.form.info.dateOfBirth).format("YYYY-MM-DD HH:mm:ss");
-    				if(param.quitDate){
-    					param.quitDate=moment(vm.form.info.quitDate).format("YYYY-MM-DD HH:mm:ss")
-					}else{
-						param.quitDate="";
-					}
+    				param.entryDate=moment(param.entryDate).format("YYYY-MM-DD HH:mm:ss");
+    				param.formalDate=moment(param.formalDate).format("YYYY-MM-DD HH:mm:ss");
+    				param.dateOfBirth=moment(param.dateOfBirth).format("YYYY-MM-DD HH:mm:ss");
+    				
+					param.quitDate=param.quitDate?moment(param.quitDate).format("YYYY-MM-DD HH:mm:ss"):'';
+					//新增几个日期字段
+					param.workStartDate=param.workStartDate?moment(param.workStartDate).format("YYYY-MM-DD HH:mm:ss"):'';
+    				param.idDateFrom=param.idDateFrom?moment(param.idDateFrom).format("YYYY-MM-DD HH:mm:ss"):'';
+    				param.idDateTo=param.idDateTo?moment(param.idDateTo).format("YYYY-MM-DD HH:mm:ss"):'';
+    				
 					var saveApi=vm.add?vm.api.saveEmployee:vm.api.upDate;
 					vm.loadingText="保存基本信息";
 					vm.saveLoading=true;
