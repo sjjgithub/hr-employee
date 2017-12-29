@@ -338,21 +338,21 @@
 						</el-col>
 						<el-col :span="8">
 							 <el-form-item label="户粮性质" prop="salary.householdCode" >
-                                <el-select v-model="form.salary.householdCode" placeholder="请选择" size="small">
+                                <el-select v-model="form.salary.householdCode" clearable placeholder="请选择" size="small">
                                     <el-option v-for="item in sels.householdList" :key="item.code" :label="item.name" :value="item.code"></el-option>
                                 </el-select>
                             </el-form-item>
 						</el-col>
 						<el-col :span="8">
 							<el-form-item prop="salary.paymentUnit" label="缴纳单位" >
-								<el-select v-model="form.salary.paymentUnit" placeholder="请选择" size="small">
+								<el-select v-model="form.salary.paymentUnit" clearable placeholder="请选择" size="small">
                                     <el-option v-for="item in sels.paymentUnitList" :key="item.id" :label="item.name" :value="item.id"></el-option>
                                 </el-select>
 							</el-form-item>
 						</el-col>
 						<el-col :span="8">
 							<el-form-item prop="salary.cityCode" label="参保城市" >
-                                <el-select v-model="form.salary.cityCode" placeholder="请选择" size="small">
+                                <el-select v-model="form.salary.cityCode" clearable placeholder="请选择" size="small">
                                     <el-option v-for="item in sels.cityList" :key="item.id" :label="item.name" :value="item.id"></el-option>
                                 </el-select>
 							</el-form-item>
