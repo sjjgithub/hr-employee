@@ -740,15 +740,17 @@ export default{
 
         // 加载编辑弹出层中的参保城市列表
 		this.$http.get(vm.api.cityList)
-        .then((data)=>{
+        .then((response)=>{
+        	let data=response.data;
         	if (data.code == '200') {
                 vm.sels.cityList = data.data;
             }
         })
         // 加载编辑弹出层中的参保单位
         this.$http.get(vm.api.paymentUnitList)
-        .then((data)=>{
-        	 if (data.code == '200') {
+        .then((response)=>{
+        	let data=response.data;
+        	if (data.code == '200') {
                 vm.sels.paymentUnitList = data.data;
             } 
         })
