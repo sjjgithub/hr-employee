@@ -416,7 +416,7 @@ export default{
 				}).then(function(){
 					vm.listLoading = true;
 					var para = {codes:vm.memberIds,quitDate:quitDate};
-					vm.$http.post(vm.httpUrl.dimission,JSON.stringify(para))
+					vm.$http.get(vm.httpUrl.dimission,{params:para})
 					.then(function(response) {
 						let responseData=response.data;
 						if(responseData.code == '200') {
