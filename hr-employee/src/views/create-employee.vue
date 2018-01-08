@@ -1138,7 +1138,7 @@ export default{
 							}else{
 								vm.saveLoading=false;
 								vm.$message.error({
-									message:responseData.msg||"创建员工信息发生错误",
+									message:responseData.msg||"保存员工信息发生错误",
 									duration:20000,
 									showClose:true,
 								});
@@ -1146,7 +1146,7 @@ export default{
 					}).catch(function(){
 						vm.saveLoading=false;
 						vm.$message.error({
-									message:"创建员工信息发生错误",
+									message:"保存员工信息发生错误",
 									duration:20000,
 									showClose:true,
 								});
@@ -1171,7 +1171,7 @@ export default{
 				}else{
 					vm.saveLoading=false;
 					vm.$message.error({
-						message:responseData.msg||"创建社保信息发生错误",
+						message:responseData.msg||"保存社保信息发生错误",
 						duration:20000,
 						showClose:true,
 					});
@@ -1179,7 +1179,7 @@ export default{
 			}).catch(function(){
 				vm.saveLoading=false;
 				vm.$message.error({
-					message:"创建社保信息发生错误",
+					message:"保存社保信息发生错误",
 					duration:20000,
 					showClose:true,
 				});
@@ -1214,7 +1214,7 @@ export default{
 					}
 				}else{
 					vm.$message.error({
-						message:responseData.msg||"创建简历息发生错误",
+						message:responseData.msg||"保存简历息发生错误",
 						duration:20000,
 						showClose:true,
 					});
