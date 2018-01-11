@@ -81,7 +81,7 @@
 							</el-checkbox-group>
 						</el-form-item>
 					</el-col>
-					<el-col :span="8">
+					<el-col :span="8" v-if="false">
 						<el-form-item prop="gatherMsgStates" label="采集状态" >
 							<el-checkbox-group v-model="param.gatherMsgStates" :min="1"> 
 								<el-checkbox :label="atherMsgData.type" v-for="(atherMsgData,index) in gatherMsgList" :key="index">{{atherMsgData.state}}</el-checkbox>
