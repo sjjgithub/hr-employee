@@ -2,72 +2,16 @@
   <div class="page-resume-shengao">
     <p class="resume-block-title">申告事项</p>
     <el-form size="small" :model="state" ref="state" label-position="top">
-      <!--<el-form-item label="您是否在两年内有发生过交通违章？若有，请详细列出"
-        prop="ispeccancy"
-        :rules="[
-          {required: true, message: '请输入内容'}
-        ]"
-      >
-        <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
-        v-model="state.ispeccancy"></el-input>
-      </el-form-item>-->
-
-      <el-form-item label="您是否因违法行为而被拘捕、民事或刑事诉讼过？若有，请详细列出"
-        prop="beillegal"
-        :rules="[
-          {required: true, message: '请输入内容'}
-        ]"
-      >
-        <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
-        v-model="state.beillegal"></el-input>
-      </el-form-item>
-
       <el-form-item label="您是否被公司解除劳动合同或和公司协商解除劳动合同过？若有，请详细列出"
         prop="retire">
         <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
         v-model="state.retire"></el-input>
       </el-form-item>
 
-      <el-form-item label="您是否有亲属朋友在雅玛多关联公司工作？若有，请列出姓名，部门名称及职位"
+      <el-form-item label="您是否有亲属朋友在天孜关联公司工作？若有，请列出姓名，部门名称及职位"
         prop="remarks">
         <el-input :autosize="textareaSize" type="textarea" placeholder="请输入"
         v-model="state.remarks"></el-input>
-      </el-form-item>
-
-      <el-form-item label="您是否同意公司对您进行工作地点的调动?"
-        prop="tranlocation"
-        :inline-message="true"
-        :rules="[
-          {required: true, message: '请选择是否同意', trigger: 'change'}
-        ]"
-      >
-        <el-radio-group v-model="state.tranlocation">
-          <el-radio label="同意"></el-radio>
-          <el-radio label="不同意"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item
-        prop="reason1">
-        <el-input :autosize="textareaSize" type="textarea" placeholder="可补充说明"
-        v-model="state.reason1"></el-input>
-      </el-form-item>
-
-      <el-form-item label="您是否同意接受公司为您安排的其它岗位？"
-        prop="tranpost"
-        :inline-message="true"
-        :rules="[
-          {required: true, message: '请选择是否同意', trigger: 'change'}
-        ]">
-        <el-radio-group v-model="state.tranpost">
-          <el-radio label="同意"></el-radio>
-          <el-radio label="不同意"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item
-        prop="reason2">
-        <el-input :autosize="textareaSize" type="textarea" placeholder="可补充说明"
-        v-model="state.reason2"></el-input>
       </el-form-item>
 
       <el-form-item label="您是否同意接受不超过一年的外派工作?"

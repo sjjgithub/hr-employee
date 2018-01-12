@@ -24,7 +24,7 @@
 						</el-col>
 						<el-col :span="8">
 							<el-form-item prop="info.lastName" label="英文名称"  
-								:rules="{pattern:/^[a-zA-Z]+$/,message:'只能输入英文'}">
+								:rules="[{pattern:/^[a-zA-Z]+$/,message:'只能输入英文'},{required:true,message:'请填写英文名字'}]">
 								<el-input size="small" v-model="form.info.lastName" placeholder="输入英文名称"></el-input>
 							</el-form-item>
 						</el-col>
