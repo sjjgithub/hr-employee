@@ -1313,7 +1313,8 @@ export default{
        	getprobationPeriod:function(start,end){
        		var startDate=moment(start);
        		var endDate=moment(end);
-       		if(startDate.date()==endDate.date()){
+       		//精确到天
+       		/*if(startDate.date()==endDate.date()){
        			if(startDate.year()==endDate.year()){
        				this.form.info.probationPeriod=endDate.month()-startDate.month();
        			}else{
@@ -1332,7 +1333,9 @@ export default{
 					}
 				}
 				this.form.info.probationPeriod=Math.round((i/30)*10)/10;
-       		}
+       		}*/
+       		//精确到月
+       		this.form.info.probationPeriod=endDate.month()-startDate.month()+12*(endDate.year()-startDate.year())
        	},
     	//身份证输入完毕根据身份证获取生日性别
     	idCardBlur:function(){
